@@ -126,8 +126,9 @@ add_action('rest_api_init', function() {
 function get_featured_posts() {
   // Custom logic to return featured posts
 }
-```
 
+```
+*newe
 ## Troubleshooting Common Issues
 
 * **CORS errors**: Verify CORS headers are properly set up

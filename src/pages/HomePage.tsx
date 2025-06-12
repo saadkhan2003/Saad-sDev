@@ -5,15 +5,15 @@ import { NewsletterSignup } from '../components/newsletter-signup';
 import { Pagination } from '../components/ui/pagination';
 import { PostSkeleton } from '../components/ui/post-skeleton';
 import { usePosts } from '../hooks/use-wordpress';
-import { mockPosts } from '../data/mockData';
 
 export function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { posts, loading, error, totalPages } = usePosts(currentPage, { useMock: true });
+  // Use the environment variable to determine if we should use mock data
+  const { posts, loading, error, totalPages } = usePosts(currentPage);
   
-  // Get featured posts (posts marked as featured)
-  const featuredPosts = mockPosts.filter((post) => post.isFeatured);
-  const latestPosts = posts || mockPosts.slice(0, 6);
+  // Get featured posts
+  const featuredPosts = posts?.filter((post) => post.isFeatured) || [];
+  const latestPosts = posts || [];
   
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

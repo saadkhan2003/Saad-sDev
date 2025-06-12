@@ -11,6 +11,7 @@
 ## Technical Documentation
 - [WordPress API Configuration](./wordpress-api-configuration.md) - Setting up WordPress as a headless CMS
 - [Development Workflow](./development-workflow.md) - Development environment, branch strategy, and contribution guidelines
+- [Git Workflow Guidelines](./git-workflow-guidelines.md) - Detailed Git practices, branch protection, and recovery procedures
 - [Testing Strategy](./testing-strategy.md) - Unit, component, and integration testing approach
 - [Deployment Strategy](./deployment-strategy.md) - Environments, CI/CD, and hosting recommendations
 - [Deployment Guide](./deployment-guide.md) - Step-by-step guide for deploying to Netlify

@@ -50,6 +50,8 @@ main               # Production branch
 │   ├── bugfix/Y   # Bug fix branches
 ```
 
+For detailed Git practices including branch protection rules and recovering from accidental merges, see [Git Workflow Guidelines](./git-workflow-guidelines.md).
+
 ### Branch Naming Convention
 
 * `feature/descriptive-name` - For new features

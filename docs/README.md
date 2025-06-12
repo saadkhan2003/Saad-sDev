@@ -13,6 +13,7 @@
 - [Development Workflow](./development-workflow.md) - Development environment, branch strategy, and contribution guidelines
 - [Testing Strategy](./testing-strategy.md) - Unit, component, and integration testing approach
 - [Deployment Strategy](./deployment-strategy.md) - Environments, CI/CD, and hosting recommendations
+- [Deployment Guide](./deployment-guide.md) - Step-by-step guide for deploying to Netlify
 - [Performance Optimization](./performance-optimization.md) - Goals, techniques, and monitoring strategies
 
 ## Content Management
@@ -37,11 +38,15 @@
 - **Content creators**: Use WordPress Content Guidelines
 - **DevOps**: Refer to Deployment Strategy document
 
+## Project Status & Planning
+- [Project Status](./project-status.md) - Current status of the project including completed and pending tasks
+- [What's Next](./whats-next.md) - Upcoming features and future development roadmap
+
 ## Future Documentation Needs
 
 - [ ] Analytics Implementation Guide
 - [ ] SEO Strategy Document
 - [ ] Detailed Component Library
-- [ ] Project Timeline and Roadmap
+- [x] Project Timeline and Roadmap - See [What's Next](./whats-next.md)
 - [ ] Error Handling Guidelines
 - [ ] Security Best Practices

@@ -53,15 +53,19 @@ This repository follows a structured branching strategy as outlined in the docum
 
 ## Deployment
 
-This project is set up for deployment to Netlify from GitHub:
+This project is deployed to Netlify from GitHub:
 
-1. Connect your GitHub repository to Netlify
-2. Configure the following build settings:
+✅ GitHub repository is connected to Netlify
+✅ Build settings configured:
    - Build command: `npm run build`
    - Publish directory: `dist`
-3. Set up environment variables in the Netlify dashboard
-   - `VITE_WORDPRESS_API_URL`: URL to your WordPress API (e.g., https://saad.catchitagency.com/wp-json)
-   - `VITE_USE_MOCK_DATA`: Set to "false" for production
+✅ Environment variables set up in Netlify:
+   - `VITE_WORDPRESS_API_URL`: URL to WordPress API
+   - `VITE_USE_MOCK_DATA`: "false" for production
+
+The site is live at: [Netlify-generated URL]
+
+For deployment details, see the [Deployment Guide](docs/deployment-guide.md).
 
 ## Local Development
 

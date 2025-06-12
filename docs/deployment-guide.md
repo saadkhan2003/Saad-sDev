@@ -28,6 +28,10 @@ GitHub Repository: [https://github.com/saadkhan2003/Saad-sDev](https://github.co
    - Publish directory: `dist`
 6. Click "Deploy site"
 
+✅ **Status**: Completed
+
+The site is now live at: [Netlify-generated URL]
+
 ### Environment Variables
 
 The following environment variables are automatically set based on the `netlify.toml` configuration:

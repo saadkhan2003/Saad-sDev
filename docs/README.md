@@ -14,9 +14,11 @@
 - [Testing Strategy](./testing-strategy.md) - Unit, component, and integration testing approach
 - [Deployment Strategy](./deployment-strategy.md) - Environments, CI/CD, and hosting recommendations
 - [Performance Optimization](./performance-optimization.md) - Goals, techniques, and monitoring strategies
+- [Troubleshooting Guide](./troubleshooting-guide.md) - Common issues and solutions for WordPress integration and deployment
 
 ## Content Management
 - [WordPress Content Guidelines](./wordpress-content-guidelines.md) - Best practices for creating and managing content
+- [Creating WordPress Posts](./creating-wordpress-posts.md) - Step-by-step guide for creating engaging blog posts
 
 ## Getting Started
 

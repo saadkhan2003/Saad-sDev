@@ -62,7 +62,7 @@ export function PostDetailPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Categories */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {post.categories.map((category) => (
+          {post.categories.map((category: Category) => (
             <Link
               key={category.id}
               to={`/category/${category.slug}`}
@@ -191,7 +191,7 @@ export function PostDetailPage() {
               Related Articles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedPosts.map((relatedPost) => (
+              {relatedPosts.map((relatedPost: Post) => (
                 <PostCard key={relatedPost.id} post={relatedPost} variant="compact" />
               ))}
             </div>

@@ -1,102 +1,108 @@
 import { useState } from 'react';
-import { TrendingUp, Zap, Users } from 'lucide-react';
+import { Search, TrendingUp, Clock, BookOpen, Sparkles, ArrowRight, Filter } from 'lucide-react';
+import { usePosts, useCategories } from '../hooks/use-wordpress';
 import { PostCard } from '../components/post-card';
-import { NewsletterSignup } from '../components/newsletter-signup';
+import { LoadingSpinner } from '../components/loading-spinner';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
+import { Input } from '../components/ui/input';
 import { Pagination } from '../components/ui/pagination';
-import { PostSkeleton } from '../components/ui/post-skeleton';
-import { usePosts } from '../hooks/use-wordpress';
 
 export function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
-  // Use the environment variable to determine if we should use mock data
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  
   const { posts, loading, error, totalPages } = usePosts(currentPage);
-  
-  // Get featured posts
-  const featuredPosts = posts?.filter((post) => post.isFeatured) || [];
-  const latestPosts = posts || [];
-  
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
-  };
+  const { posts: featuredPosts, loading: featuredLoading } = usePosts(1, { featured: true });
+  const { categories, loading: categoriesLoading } = useCategories();
+
+  if (loading && currentPage === 1) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <LoadingSpinner size="large" />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-white to-primary/5 dark:from-primary/10 dark:via-gray-950 dark:to-primary/10 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Stay Ahead in the{' '}
-              <span className="text-primary">Tech World</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Get the latest insights, trends, and analysis from the tech industry. 
-              From AI breakthroughs to startup stories, we've got you covered.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#latest-posts"
-                className="inline-flex items-center justify-center px-8 py-3 text-white font-medium bg-primary rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                Explore Articles
-              </a>
-              <a
-                href="#newsletter"
-                className="inline-flex items-center justify-center px-8 py-3 text-primary font-medium border border-primary rounded-lg hover:bg-primary/5 transition-colors"
-              >
-                Subscribe Newsletter
-              </a>
-            </div>
-          </div>
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-grid-pattern"></div>
         </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">500+</h3>
-              <p className="text-gray-600 dark:text-gray-300">Tech Articles Published</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">10K+</h3>
-              <p className="text-gray-600 dark:text-gray-300">Monthly Readers</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Daily</h3>
-              <p className="text-gray-600 dark:text-gray-300">Fresh Content Updates</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Posts */}
-      {featuredPosts.length > 0 && (
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Featured Stories
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Don't miss these handpicked articles covering the most important 
-                developments in technology today.
-              </p>
+        
+        <div className="relative container mx-auto px-4 py-20 lg:py-32">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6 animate-fadeIn">
+              <Sparkles className="w-4 h-4" />
+              <span className="text-sm font-medium">Welcome to our blog</span>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {featuredPosts.map((post) => (
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 animate-slideUp">
+              <span className="text-gradient">Discover</span> Amazing
+              <br />
+              Stories & Insights
+            </h1>
+            
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fadeIn">
+              Explore thought-provoking articles, tutorials, and insights from our community of writers and experts.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fadeIn">
+              <div className="relative flex-1 max-w-lg">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                <Input 
+                  placeholder="Search articles..." 
+                  className="pl-10 h-12 text-lg border-2 focus:border-primary"
+                />
+              </div>
+              <Button size="lg" className="h-12 px-8 font-semibold">
+                <Search className="w-5 h-5 mr-2" />
+                Search
+              </Button>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto animate-fadeIn">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">500+</div>
+                <div className="text-sm text-muted-foreground">Articles</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">50K+</div>
+                <div className="text-sm text-muted-foreground">Readers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">15+</div>
+                <div className="text-sm text-muted-foreground">Categories</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">Daily</div>
+                <div className="text-sm text-muted-foreground">Updates</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Posts Section */}
+      {!featuredLoading && featuredPosts.length > 0 && (
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-3 mb-12">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold">Featured Stories</h2>
+                <p className="text-muted-foreground">Hand-picked articles just for you</p>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              {featuredPosts.slice(0, 2).map((post) => (
                 <PostCard key={post.id} post={post} variant="featured" />
               ))}
             </div>
@@ -104,55 +110,127 @@ export function HomePage() {
         </section>
       )}
 
-      {/* Latest Posts */}
-      <section id="latest-posts" className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Latest Articles
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Stay updated with our newest content covering AI, programming, 
-              startups, and the latest tech trends.
-            </p>
-          </div>
-          
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, i) => (
-                <PostSkeleton key={i} />
+      {/* Categories Section */}
+      {!categoriesLoading && categories.length > 0 && (
+        <section className="py-16 bg-card">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-accent/10">
+                  <Filter className="w-6 h-6 text-accent-foreground" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold">Explore Categories</h2>
+                  <p className="text-muted-foreground">Find content by topic</p>
+                </div>
+              </div>
+              <Button variant="outline" size="sm">
+                View All
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Button 
+                variant={selectedCategory === null ? "primary" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(null)}
+                className="rounded-full"
+              >
+                All Posts
+              </Button>
+              {categories.slice(0, 8).map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.slug ? "primary" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.slug)}
+                  className="rounded-full"
+                >
+                  {category.name}
+                </Button>
               ))}
             </div>
-          ) : error ? (
-            <div className="text-center py-12">
-              <p className="text-red-500 dark:text-red-400">Failed to load posts. Please try again later.</p>
+          </div>
+        </section>
+      )}
+
+      {/* Main Content Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="p-2 rounded-lg bg-secondary/10">
+              <BookOpen className="w-6 h-6 text-secondary-foreground" />
             </div>
+            <div>
+              <h2 className="text-3xl font-bold">Latest Articles</h2>
+              <p className="text-muted-foreground">Stay updated with our newest content</p>
+            </div>
+          </div>
+
+          {error ? (
+            <Card className="p-8 text-center border-destructive/20">
+              <CardContent>
+                <p className="text-destructive mb-4">{error.message}</p>
+                <Button variant="outline" onClick={() => window.location.reload()}>
+                  Try Again
+                </Button>
+              </CardContent>
+            </Card>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {latestPosts.map((post) => (
-                  <PostCard key={post.id} post={post} />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {posts.map((post, index) => (
+                  <div
+                    key={post.id}
+                    className="animate-fadeIn"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <PostCard post={post} />
+                  </div>
                 ))}
               </div>
-              
+
               {totalPages > 1 && (
-                <div className="mt-12 flex justify-center">
-                  <Pagination 
-                    currentPage={currentPage} 
-                    totalPages={totalPages} 
-                    onPageChange={handlePageChange} 
+                <div className="flex justify-center">
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                    className="animate-fadeIn"
                   />
                 </div>
               )}
             </>
           )}
+
+          {loading && currentPage > 1 && (
+            <div className="flex justify-center py-8">
+              <LoadingSpinner size="large" />
+            </div>
+          )}
         </div>
       </section>
 
       {/* Newsletter Section */}
-      <section id="newsletter" className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <NewsletterSignup />
+      <section className="py-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Stay in the loop</h2>
+            <p className="text-primary-foreground/80 mb-8 text-lg">
+              Get the latest articles and updates delivered straight to your inbox.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input 
+                placeholder="Enter your email"
+                className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              />
+              <Button variant="secondary" size="lg" className="font-semibold">
+                Subscribe
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>

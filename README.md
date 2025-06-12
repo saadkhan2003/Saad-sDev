@@ -1,91 +1,80 @@
-# Saad.dev - Tech News Blog Website
+# Saad.dev - Blog WordPress Integration
 
-A professional tech news blog website built with React, TypeScript, and Tailwind CSS. This website features the latest articles in the tech industry, with a clean and modern user interface.
+A modern React-based frontend for WordPress, using Vite, TypeScript, and Tailwind CSS.
 
-## Features
+## Branch Structure
 
-- **Clean, Modern Design** - Mobile-responsive layout built with Tailwind CSS
-- **Dark/Light Mode** - Theme toggle with system preference detection
-- **Content Management** - Ready for WordPress headless CMS integration
-- **Article Pages** - Featured posts, category sections, and post details
-- **Search Functionality** - Find content quickly with search capabilities
-- **Newsletter Signup** - Collect emails for your newsletter
-- **Developer-friendly** - Built with TypeScript, path aliases, and clean architecture
+This repository follows a structured branching strategy as outlined in the documentation:
 
-## Tech Stack
+- `main` - Production branch
+- `development` - Development branch
+  - `feature/*` - Feature branches
+  - `bugfix/*` - Bug fix branches
+  - `hotfix/*` - Critical production fixes
+  - `docs/*` - Documentation updates
 
-- **Frontend Framework**: React 18 with TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: Custom components with shadcn/ui inspiration
-- **Routing**: React Router v6
-- **Build Tool**: Vite
-- **Icons**: Lucide React
-- **Backend**: Ready for WordPress as a headless CMS
+## Development Workflow
 
-## Getting Started
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd blogwordpressnitegration
+   ```
 
-### Prerequisites
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- Node.js 18+ and npm/yarn
+3. **Create a feature branch**
+   ```bash
+   git checkout development
+   git checkout -b feature/your-feature-name
+   ```
 
-### Installation
+4. **Implement your changes and commit**
+   ```bash
+   git add .
+   git commit -m "feat: add your feature"
+   ```
 
-1. Clone the repository
+5. **Push your branch**
+   ```bash
+   git push -u origin feature/your-feature-name
+   ```
+
+6. **Create a pull request**
+   - Create a PR to merge your feature branch into the `development` branch
+   - Get code reviews and address feedback
+   - Once approved, merge the PR
+
+7. **Promote to production**
+   - Create a PR from `development` to `main` when features are ready for production
+
+## Deployment
+
+This project is set up for deployment to Netlify from GitHub:
+
+1. Connect your GitHub repository to Netlify
+2. Configure the following build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+3. Set up environment variables in the Netlify dashboard
+   - `VITE_WORDPRESS_API_URL`: URL to your WordPress API (e.g., https://saad.catchitagency.com/wp-json)
+   - `VITE_USE_MOCK_DATA`: Set to "false" for production
+
+## Local Development
+
 ```bash
-git clone https://github.com/yourusername/saad-dev-blog.git
-cd saad-dev-blog
-```
-
-2. Install dependencies
-```bash
-npm install
-```
-
-3. Start the development server
-```bash
+# Start development server
 npm run dev
-```
 
-4. Build for production
-```bash
+# Build for production
 npm run build
+
+# Preview production build
+npm run preview
 ```
-```
 
-## Project Structure
-
-- `src/components/` - Reusable UI components
-- `src/pages/` - Page components for different routes
-- `src/hooks/` - Custom React hooks
-- `src/services/` - API services including WordPress API
-- `src/types/` - TypeScript type definitions
-- `src/lib/` - Utility functions and helpers
-- `src/data/` - Mock data for development
-
-## WordPress Integration
-
-The blog is designed to work with WordPress as a headless CMS. To connect to your WordPress site:
-
-1. Update the API base URL in `src/services/wordpress-api.ts`
-2. Set `USE_MOCK_DATA` to `false` in `src/hooks/use-wordpress.ts`
-3. Ensure your WordPress site has the WP REST API and CORS properly configured
-
-## Upcoming Features
-
-- Comments system integration (Supabase or Disqus)
-- Mailchimp or Buttondown newsletter integration
-- Author profiles
-- Related posts
-- Social sharing
-- Analytics integration
-
-## License
-
-MIT
-
----
-
-Created by Saad Khan | June 2025
-  },
-})
+For more details, refer to the documentation in the `docs` folder.
 ```

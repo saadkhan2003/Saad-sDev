@@ -16,10 +16,10 @@ export function PostDetailPage() {
   // Get related posts based on categories
   const relatedPosts = post && posts.length > 0
     ? posts
-        .filter(p => 
+        .filter((p: Post) => 
           p.id !== post.id && 
-          p.categories.some(c => 
-            post.categories.some(pc => pc.id === c.id)
+          p.categories.some((c: Category) => 
+            post.categories.some((pc: Category) => pc.id === c.id)
           )
         )
         .slice(0, 3)
@@ -114,7 +114,7 @@ export function PostDetailPage() {
         {post.tags.length > 0 && (
           <div className="flex flex-wrap items-center gap-2 mb-12">
             <Tag className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-            {post.tags.map((tag) => (
+            {post.tags.map((tag: TagType) => (
               <Link
                 key={tag.id}
                 to={`/tag/${tag.slug}`}

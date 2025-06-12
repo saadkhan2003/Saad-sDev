@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Search, TrendingUp, Clock, BookOpen, Sparkles, ArrowRight, Filter } from 'lucide-react';
+import { Search, TrendingUp, BookOpen, Sparkles, ArrowRight, Filter } from 'lucide-react';
 import { usePosts, useCategories } from '../hooks/use-wordpress';
 import { PostCard } from '../components/post-card';
 import { LoadingSpinner } from '../components/loading-spinner';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import { Pagination } from '../components/ui/pagination';
 

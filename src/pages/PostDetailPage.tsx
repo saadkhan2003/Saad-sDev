@@ -1,16 +1,21 @@
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, User, Tag } from 'lucide-react';
-import { getPostBySlug, mockPosts } from '../data/mockData';
+import { usePost, usePosts } from '../hooks/use-wordpress';
 import { NewsletterSignup } from '../components/newsletter-signup';
 import { PostCard } from '../components/post-card';
+import { LoadingSpinner } from '../components/loading-spinner';
+import type { Post, Category, Tag as TagType } from '../types/blog';
 
 export function PostDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getPostBySlug(slug) : undefined;
+  const { post, loading, error } = usePost(slug);
+  
+  // Get all posts to find related ones
+  const { posts } = usePosts();
   
   // Get related posts based on categories
-  const relatedPosts = post 
-    ? mockPosts
+  const relatedPosts = post && posts.length > 0
+    ? posts
         .filter(p => 
           p.id !== post.id && 
           p.categories.some(c => 
@@ -20,10 +25,23 @@ export function PostDetailPage() {
         .slice(0, 3)
     : [];
 
-  if (!post) {
+  // Show loading indicator while fetching post
+  if (loading) {
+    return (
+      <div className="py-20 flex justify-center">
+        <LoadingSpinner size="large" />
+      </div>
+    );
+  }
+
+  // Show error message if post can't be found
+  if (error || !post) {
     return (
       <div className="py-12 text-center">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Post not found</h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2 mb-4">
+          {error ? error.message : "The post you're looking for doesn't exist or has been removed."}
+        </p>
         <Link to="/" className="mt-4 text-primary hover:underline">
           Return to homepage
         </Link>

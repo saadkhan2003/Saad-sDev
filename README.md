@@ -2,6 +2,8 @@
 
 A professional tech news blog website built with React, TypeScript, and Tailwind CSS. This website features the latest articles in the tech industry, with a clean and modern user interface.
 
+**Live Site**: [https://saadsdev.netlify.app/](https://saadsdev.netlify.app/)
+
 ## Features
 
 - **Clean, Modern Design** - Mobile-responsive layout built with Tailwind CSS
@@ -83,9 +85,16 @@ The blog is designed to work with WordPress as a headless CMS. To connect to you
 
 MIT
 
+## Troubleshooting
+
+If you encounter any issues with the application, particularly with WordPress integration or deployment, please refer to our [Troubleshooting Guide](./docs/troubleshooting-guide.md).
+
+Common issues addressed:
+- Posts not displaying from WordPress
+- Environment variable configuration
+- CORS issues with WordPress API
+- Netlify deployment problems
+
 ---
 
 Created by Saad Khan | June 2025
-  },
-})
-```

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Search, Filter, SortAsc, Grid, List, Sparkles, TrendingUp } from 'lucide-react';
+import { Search, Filter, SortAsc, Grid, List, TrendingUp } from 'lucide-react';
 import { useSearchPosts } from '../hooks/use-wordpress';
 import { PostCard } from '../components/post-card';
 import { LoadingSpinner } from '../components/loading-spinner';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';

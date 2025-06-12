@@ -1,0 +1,27 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Production context: all deploys from the Production branch set in your site's
+# deploy settings will inherit these settings.
+[context.production.environment]
+  VITE_WORDPRESS_API_URL = "https://saad.catchitagency.com/wp-json"
+  VITE_USE_MOCK_DATA = "false"
+
+# Deploy Preview context: all deploys generated from a pull/merge request
+# will inherit these settings.
+[context.deploy-preview.environment]
+  VITE_WORDPRESS_API_URL = "https://saad.catchitagency.com/wp-json"
+  VITE_USE_MOCK_DATA = "false"
+
+# Branch deploy context: all deploys that are not from a pull/merge request
+# or from the Production branch will inherit these settings.
+[context.branch-deploy.environment]
+  VITE_WORDPRESS_API_URL = "https://saad.catchitagency.com/wp-json"
+  VITE_USE_MOCK_DATA = "true"
+
+# Redirect rules to support client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

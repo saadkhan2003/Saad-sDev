@@ -1,11 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Hash, TrendingUp, Calendar, Users } from 'lucide-react';
+import { ArrowLeft, BookOpen, Hash, TrendingUp, Users } from 'lucide-react';
 import { usePostsByCategory, useCategories } from '../hooks/use-wordpress';
 import { PostCard } from '../components/post-card';
 import { LoadingSpinner } from '../components/loading-spinner';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import type { Category as CategoryType } from '../types/blog';
 
 export function CategoryPage() {

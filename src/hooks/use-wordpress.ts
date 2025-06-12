@@ -3,8 +3,8 @@ import { wordpressApi } from '../services/wordpress-api';
 import type { Post, Category } from '../types/blog';
 import { mockPosts } from '../data/mockData';
 
-// Toggle to use mock data during development
-const USE_MOCK_DATA = true;
+// Use environment variable for controlling mock data, fallback to false
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
 /**
  * Custom hook for fetching posts from WordPress
